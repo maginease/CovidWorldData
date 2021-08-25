@@ -12,7 +12,7 @@ struct CountryRow: View {
     var data = countryDatas
     var body: some View {
         
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal,showsIndicators:false) {
             LazyHStack {
                 ForEach(data.keys.sorted(),id:\.self) { key in
                     
@@ -20,7 +20,7 @@ struct CountryRow: View {
                     
                 }
             }
-        }
+        }.frame(height:150)
     }
 }
 

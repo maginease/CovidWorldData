@@ -26,11 +26,11 @@ func decode<T:Decodable>(url:String,type:T.Type)->T {
         } catch let error { print(error.localizedDescription) }
           
     }.resume()
-    
-//    while result == nil {}
-    
+        
     sem.wait()
 
+    while result == nil {}
+    
     return result!
 }
 

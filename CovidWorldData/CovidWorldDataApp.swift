@@ -11,8 +11,8 @@ import SwiftUI
 struct CovidWorldDataApp: App {
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-            CountryRow()
+            ContentView()
+ 
         }
     }
 }
