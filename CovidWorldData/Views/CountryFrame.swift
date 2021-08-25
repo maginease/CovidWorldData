@@ -9,23 +9,20 @@ import SwiftUI
 
 struct CountryFrame: View {
     
-    @State private var isLoading = true
-    
+  
     let key:String
-    var data:[Country] {
-        print("data accessed")
-        return decode(url: returnLink(key: key), type: [Country].self,isLoading: &isLoading)
-    }
-    
-    
+    @State private var data:[Country] = []
+
     
     var body: some View {
         
         VStack {
-        
-            if isLoading {
-                
-                Text("Loading...")
+            
+            if data.isEmpty {
+
+                Text("Loading...").onAppear {
+                   data = decode(url: returnLink(key: key), type: [Country].self)
+                }
             } else {
                 
                 Text("\(data[0].Country)").font(.headline)

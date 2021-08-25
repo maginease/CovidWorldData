@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
-func decode<T:Decodable>(url:String,type:T.Type,isLoading:inout Bool)->T {
+func decode<T:Decodable>(url:String,type:T.Type)->T {
     
     let endPoint = NSMutableURLRequest(url: URL(string:url)!)
+    let sem = DispatchSemaphore.init(value: 0)
     
     var result:T?
     
@@ -18,6 +19,7 @@ func decode<T:Decodable>(url:String,type:T.Type,isLoading:inout Bool)->T {
         
         guard let data = data, error == nil else { return }
  
+        defer { sem.signal() }
         do {
             result = try JSONDecoder().decode(type,from:data)
           
@@ -25,9 +27,9 @@ func decode<T:Decodable>(url:String,type:T.Type,isLoading:inout Bool)->T {
           
     }.resume()
     
-    while result == nil {}
+//    while result == nil {}
     
-    isLoading.toggle()
+    sem.wait()
 
     return result!
 }

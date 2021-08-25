@@ -12,7 +12,7 @@ struct CovidWorldDataApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
-            CountryFrame(key: "Japan")
+            CountryRow()
         }
     }
 }

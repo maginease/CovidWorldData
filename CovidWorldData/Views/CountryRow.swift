@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CountryRow: View {
     
-    var data = data2
+    var data = countryDatas
     var body: some View {
         
         ScrollView(.horizontal) {
