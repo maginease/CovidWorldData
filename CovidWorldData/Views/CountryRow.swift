@@ -16,11 +16,13 @@ struct CountryRow: View {
             LazyHStack {
                 ForEach(data.keys.sorted(),id:\.self) { key in
                     
-                    CountryFrame(key: key).frame(width:150, height: 150)
-                    
+                    NavigationLink(destination:Text("hi")) {
+                        CountryFrame(key: key).frame(width:150, height: 150)
+                    }.foregroundColor(.black)
                 }
             }
         }.frame(height:150)
+        
     }
 }
 

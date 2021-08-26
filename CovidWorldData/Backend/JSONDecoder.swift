@@ -23,7 +23,9 @@ func decode<T:Decodable>(url:String,type:T.Type)->T {
         do {
             result = try JSONDecoder().decode(type,from:data)
           
-        } catch let error { print(error.localizedDescription) }
+        } catch let error {
+            print(error.localizedDescription)
+        }
           
     }.resume()
         

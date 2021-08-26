@@ -11,13 +11,14 @@ struct ContentView: View {
     
     var body: some View {
         
-        VStack {
+        NavigationView {
+            VStack {
+                TotalCases()
+                CountryRow()
+            }
+        }.navigationTitle("Cases")
         
-            TotalCases()
-            CountryRow()
-            
-        }
-       
+        
     }
 }
 

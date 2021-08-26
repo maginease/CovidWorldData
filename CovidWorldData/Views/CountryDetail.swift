@@ -9,15 +9,16 @@ import SwiftUI
 
 struct CountryDetail: View {
     
+    @Binding var key:String
     @Binding var countryData:[Country]
     
     var body: some View {
-        Text("Hello, World!")
+        Text("Total Cases:\(countryData.reversed()[0].Cases)")
     }
 }
 
-struct CountryDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        CountryDetail()
-    }
-}
+//struct CountryDetail_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CountryDetail(countryData: [Country(Country: "", Cases: 0, Date: "")])
+//    }
+//}
