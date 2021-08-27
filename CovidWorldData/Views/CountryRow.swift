@@ -16,7 +16,7 @@ struct CountryRow: View {
             LazyHStack {
                 ForEach(data.keys.sorted(),id:\.self) { key in
                     
-                    NavigationLink(destination:Text("hi")) {
+                    NavigationLink(destination:CountryDetail(key: key)) {
                         CountryFrame(key: key).frame(width:150, height: 150)
                     }.foregroundColor(.black)
                 }
