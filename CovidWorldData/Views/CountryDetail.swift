@@ -10,7 +10,20 @@ import SwiftUI
 struct CountryDetail: View {
     
     let key:String
-    @State var countryData:[Country] = []
+    @State var countryData:[Country] = [
+//        Country(Country: "", Cases: 12000, Date: ""),
+//        Country(Country: "", Cases: 8000, Date: ""),
+//        Country(Country: "", Cases: 5000, Date: ""),
+//        Country(Country: "", Cases: 3000, Date: ""),
+//        Country(Country: "", Cases: 1200, Date: ""),
+//        Country(Country: "", Cases: 800, Date: ""),
+//        Country(Country: "", Cases: 500, Date: ""),
+//        Country(Country: "", Cases: 150, Date: ""),
+//        Country(Country: "", Cases: 100, Date: ""),
+//        Country(Country: "", Cases: 50, Date: ""),
+//        Country(Country: "", Cases: 30, Date: ""),
+//        Country(Country: "", Cases: 15, Date: "")
+    ]
     var height = 200.0
     
     var body: some View {
@@ -28,11 +41,14 @@ struct CountryDetail: View {
                 
             }.frame(height:CGFloat(height))
         }
+    
+}
+}
+struct CountryDetail_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            CountryDetail(key:"Albania")
+        }
     }
 }
 
-struct CountryDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        CountryDetail(key:"Japan")
-    }
-}

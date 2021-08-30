@@ -13,26 +13,32 @@ struct CountryDetailGraph: View {
     var height:Double
     
     var body: some View {
-       
-        HStack(alignment:.bottom) {
-            
-            ForEach(NewCasesArray(data:data),id:\.self) { newCase in
-                
-                VStack {
-                CountryDetailGraphBar(height: CGFloat(barHeight(max: NewCasesArray(data:data).max()!, data: newCase, frameHeight: height)), width: 10.0)
-                 
-                }
-            }
-            
-            
-        }.frame(height:CGFloat(height))
         
+        ScrollView(.horizontal) {
+            HStack(alignment:.bottom) {
+                
+                ForEach(data.reversed(),id:\.self) { country in
+                    HStack {
+                        
+                        CountryDetailGraphBar(height: CGFloat(barHeight(max: NewCasesArray(data:data).max()!, data: country.Cases, frameHeight: height)), width: 10.0)
+                    }
+                }
+                
+            }
+        }.frame(height:CGFloat(height))
     }
 }
 
 struct CountryDetailGraph_Previews: PreviewProvider {
     static var previews: some View {
         CountryDetailGraph(data:[
+            Country(Country: "", Cases: 12000, Date: ""),
+            Country(Country: "", Cases: 8000, Date: ""),
+            Country(Country: "", Cases: 5000, Date: ""),
+            Country(Country: "", Cases: 3000, Date: ""),
+            Country(Country: "", Cases: 1200, Date: ""),
+            Country(Country: "", Cases: 800, Date: ""),
+            Country(Country: "", Cases: 500, Date: ""),
             Country(Country: "", Cases: 150, Date: ""),
             Country(Country: "", Cases: 100, Date: ""),
             Country(Country: "", Cases: 50, Date: ""),
