@@ -31,7 +31,9 @@ struct CountryDetail: View {
         if countryData.isEmpty {
             
             Text("Loading...").onAppear {
-                countryData = decode(url: returnLink(key: key), type: [Country].self)
+                decode(url: returnLink(key: key), type: [Country].self) { res in
+                    countryData = res
+                }
             }
         } else {
             

@@ -21,7 +21,10 @@ struct CountryFrame: View {
             if data.isEmpty {
 
                 Text("Loading...").onAppear {
-                   data = decode(url: returnLink(key: key), type: [Country].self)
+                    decode(url: returnLink(key: key), type: [Country].self) { res in
+                         
+                        data = res
+                    }
                 }
             } else {
                 

@@ -15,7 +15,10 @@ struct TotalCases: View {
        
         if worldData.isEmpty {
             Text("Loading...").onAppear {
-                worldData = [decode(url: "https://api.covid19api.com/summary", type: World.self)]
+                decode(url: "https://api.covid19api.com/summary", type: World.self) { res in
+                    
+                    worldData = [res]
+                }
             }
         } else {
             
