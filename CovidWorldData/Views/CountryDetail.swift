@@ -10,20 +10,7 @@ import SwiftUI
 struct CountryDetail: View {
     
     let key:String
-    @State var countryData:[Country] = [
-//        Country(Country: "", Cases: 12000, Date: ""),
-//        Country(Country: "", Cases: 8000, Date: ""),
-//        Country(Country: "", Cases: 5000, Date: ""),
-//        Country(Country: "", Cases: 3000, Date: ""),
-//        Country(Country: "", Cases: 1200, Date: ""),
-//        Country(Country: "", Cases: 800, Date: ""),
-//        Country(Country: "", Cases: 500, Date: ""),
-//        Country(Country: "", Cases: 150, Date: ""),
-//        Country(Country: "", Cases: 100, Date: ""),
-//        Country(Country: "", Cases: 50, Date: ""),
-//        Country(Country: "", Cases: 30, Date: ""),
-//        Country(Country: "", Cases: 15, Date: "")
-    ]
+    @State var countryData:[Country] = []
     var height = 200.0
     
     var body: some View {
