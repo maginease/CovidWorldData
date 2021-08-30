@@ -16,6 +16,19 @@ func findNewCases(_ country:[Country])->Int {
     return country[lastIndex].Cases - country[lastIndex - 1].Cases
 }
 
+func maxCases(_ data:[Country])->Int {
+    
+    guard data.isEmpty == false else { return 1 }
+    
+    var arr = [Int]()
+    
+    for i in 0..<data.count {
+        arr.append(data[i].Cases)
+    }
+    
+    return arr.max()!
+}
+
 func returnLink(key:String)->String {
     
     guard let linkName = countryDatas[key] else { return "" }
