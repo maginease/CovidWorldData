@@ -13,6 +13,10 @@ func findNewCases(_ country:[Country])->Int {
     
     guard lastIndex > 0 else { return country[0].Cases }
     
+    if country[lastIndex].Cases < country[lastIndex - 1].Cases {
+        return 0
+    }
+    
     return country[lastIndex].Cases - country[lastIndex - 1].Cases
 }
 
@@ -44,14 +48,20 @@ func barHeight(max:Int,data:Int,frameHeight:Double)->Double {
 func NewCasesArray(data:[Country])->[Int] {
     
     var result = [Int]()
-    var targetArray = Array(data.reversed())
+    var targetArray = data
     
     for _ in 0..<targetArray.count - 1 {
         
-        result.append(targetArray[1].Cases - targetArray[0].Cases)
+        if targetArray[1].Cases < targetArray[0].Cases {
+            result.append(0)
+            
+        } else {
+            result.append(targetArray[1].Cases - targetArray[0].Cases)
+        }
+        
         targetArray.remove(at: 0)
     }
-    result.append(targetArray[0].Cases)
+//    result.append(targetArray[0].Cases)
     
     return result
 }

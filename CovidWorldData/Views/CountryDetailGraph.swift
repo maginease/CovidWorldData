@@ -11,16 +11,29 @@ struct CountryDetailGraph: View {
     
     let data:[Country]
     var height:Double
+    let buttonState:GraphButton
+    var numberArray:[Int] {
+        
+        switch buttonState {
+        
+        case .totalCases:
+            return data.map { $0.Cases }
+            
+        case .newCases:
+            return NewCasesArray(data: data)
+        }
+        
+    }
     
     var body: some View {
-        
+        let max = numberArray.max()!
         ScrollView(.horizontal,showsIndicators:false) {
             HStack(alignment:.bottom,spacing:0) {
                 
-                ForEach(data,id:\.self) { country in
-                    
-                    CountryDetailGraphBar(height: CGFloat(barHeight(max: maxCases(data), data: country.Cases, frameHeight: height)), width: UIScreen.main.bounds.width / CGFloat(data.count))
-                    
+                ForEach(numberArray,id:\.self) { num in
+                 
+                    CountryDetailGraphBar(height: CGFloat(barHeight(max: max, data: num, frameHeight: height)), width: UIScreen.main.bounds.width / CGFloat(data.count))
+               
                 }
                 
             }
@@ -47,6 +60,6 @@ struct CountryDetailGraph_Previews: PreviewProvider {
             Country(Country: "", Cases: 15, Date: "")
            
             
-        ],height:200.0)
+        ],height:200.0,buttonState: .newCases)
     }
 }
