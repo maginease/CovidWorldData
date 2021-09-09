@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-func decode<T:Decodable>(url:String,type:T.Type,_ uponCompletion:@escaping (T)->Void) {
+func FetchAndDecode<T: Decodable>(url: String, type: T.Type, _ completion: @escaping (T) -> Void) {
     
     let endPoint = NSMutableURLRequest(url: URL(string:url)!)
     
@@ -17,11 +17,11 @@ func decode<T:Decodable>(url:String,type:T.Type,_ uponCompletion:@escaping (T)->
         guard error == nil else { return }
  
         if let data = data, let decodedData = try? JSONDecoder().decode(type, from: data) {
-            uponCompletion(decodedData)
+            
+            completion(decodedData)
         }
         
     }.resume()
-        
 }
 
 

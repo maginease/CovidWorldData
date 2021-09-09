@@ -13,7 +13,7 @@ struct ContentView: View {
         
         NavigationView {
             VStack {
-                TotalCases()
+                TotalCasesView()
                 CountryRow()
             }
         }.navigationTitle("Cases")

@@ -65,3 +65,16 @@ func NewCasesArray(data:[Country])->[Int] {
     
     return result
 }
+
+
+func findCountry(_ string:String,data:[String:String])->[String:String] {
+    
+    return data.filter {
+        
+        if $0.key.lowercased().contains(string.lowercased()) {
+            
+            return true
+        }
+        return false
+    }
+}

@@ -7,22 +7,22 @@
 
 import SwiftUI
 
-struct CountryFrame: View {
+struct CountryFrameView: View {
     
-  
+    
     let key:String
     @State private var data:[Country] = []
-
+    
     
     var body: some View {
         
         VStack {
             
             if data.isEmpty {
-
+                
                 Text("Loading...").onAppear {
-                    decode(url: returnLink(key: key), type: [Country].self) { res in
-                         
+                    FetchAndDecode(url: returnLink(key: key), type: [Country].self) { res in
+                        
                         data = res
                     }
                 }
@@ -31,23 +31,23 @@ struct CountryFrame: View {
                 Text("\(data[0].Country)").font(.headline)
                 Text("New Cases: +\(findNewCases(data))")
             }
-           
-           
-           
+            
+            
+            
         }
         .padding()
         .frame(width:150,height:150)
         .clipShape(Rectangle())
         .overlay(Rectangle().stroke(Color.gray,lineWidth:6))
         .cornerRadius(5)
-        }
-        
+    }
+    
     
 }
 
 struct CountryFrame_Previews: PreviewProvider {
     static var previews: some View {
-        CountryFrame(key: "Japan")
+        CountryFrameView(key: "Japan")
     }
 }
 

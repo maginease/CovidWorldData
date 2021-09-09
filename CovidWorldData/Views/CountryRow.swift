@@ -10,19 +10,45 @@ import SwiftUI
 struct CountryRow: View {
     
     var data = countryDatas
+    @State private var search = ""
+    
     var body: some View {
         
-        ScrollView(.horizontal,showsIndicators:false) {
-            LazyHStack {
-                ForEach(data.keys.sorted(),id:\.self) { key in
+        VStack {
+            
+            TextField("Search Countries...", text: $search).padding()
+            
+            ScrollView(.horizontal,showsIndicators:false) {
+                
+                LazyHStack {
                     
-                    NavigationLink(destination:CountryDetail(key: key)) {
-                        CountryFrame(key: key).frame(width:150, height: 150)
-                    }.foregroundColor(.black)
+                    if search.isEmpty {
+                        
+                        ForEach(data.keys.sorted(),id:\.self) { key in
+                            
+                            NavigationLink(destination:CountryDetailView(key: key)) {
+                                
+                                CountryFrameView(key: key).frame(width:150, height: 150)
+                            }.foregroundColor(.black)
+                        }
+                        
+                    } else {
+                        
+                        ForEach(findCountry(search, data: data).keys.sorted(),id:\.self) { key in
+                            
+                            NavigationLink(destination:CountryDetailView(key: key)) {
+                                
+                                CountryFrameView(key: key).frame(width:150, height: 150)
+                            }.foregroundColor(.black)
+                            
+                        }
+                        
+                    }
+                    
+                    
                 }
-            }
-        }.frame(height:150)
-        
+            }.frame(height:150)
+        }
     }
 }
 

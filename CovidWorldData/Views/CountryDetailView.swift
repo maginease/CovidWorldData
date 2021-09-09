@@ -14,7 +14,7 @@ enum GraphButton {
 }
 
 
-struct CountryDetail: View {
+struct CountryDetailView: View {
     
     let key:String
     @State var countryData:[Country] = []
@@ -26,7 +26,7 @@ struct CountryDetail: View {
         if countryData.isEmpty {
             
             Text("Loading...").onAppear {
-                decode(url: returnLink(key: key), type: [Country].self) { res in
+                FetchAndDecode(url: returnLink(key: key), type: [Country].self) { res in
                     countryData = res
                 }
             }
@@ -65,7 +65,7 @@ struct CountryDetail: View {
 struct CountryDetail_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CountryDetail(key:"Japan")
+            CountryDetailView(key:"Japan")
         }
     }
 }
