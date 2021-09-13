@@ -20,6 +20,8 @@ struct CountryDetailView: View {
     @State var countryData:[Country] = []
     var height = 200.0
     @State private var currentButton = GraphButton.totalCases
+    @EnvironmentObject var modelData:ModelData
+    @State private var country = World.CountryDataToday(Country: "", NewConfirmed: 0, TotalConfirmed: 0, NewDeaths: 0, TotalDeaths: 0)
     
     var body: some View {
         
@@ -29,23 +31,35 @@ struct CountryDetailView: View {
                 FetchAndDecode(url: returnLink(key: key), type: [Country].self) { res in
                     countryData = res
                 }
+                country = modelData.summary.Countries.first { $0.Country == key }!
+                
             }
         } else {
             
             VStack {
                 
                 Text("\(countryData[0].Country)")
-                    .font(.system(size: 50,design: .serif))
+                    .font(.system(size: 30,design: .serif))
                     .padding()
-                
+                    .truncationMode(.head)
+               
                 
                 Text("Total Cases:")
-                    .font(.system(size: 30).bold())
-                Text("\(countryData.last!.Cases)")
-                    .font(.system(size: 30).bold())
-                Text("New Cases:")
-                Text("+\(findNewCases(countryData))").foregroundColor(.red)
-                
+                    .font(.system(size: 20).bold())
+                Text("\(country.TotalConfirmed)")
+                    .font(.system(size: 20).bold())
+               
+                Text("Total Deaths:")
+                    .font(.system(size: 20).bold())
+                Text("\(country.TotalDeaths)")
+                    .font(.system(size: 20).bold())
+
+                HStack {
+                    Text("New Cases:")
+                    Text("+\(country.NewConfirmed)").foregroundColor(.red)
+                    Text("New Deaths:")
+                    Text("+\(country.NewDeaths)").foregroundColor(.red)
+                }
                 CountryDetailGraph(data: countryData,height:height,buttonState: currentButton).frame(height:CGFloat(height))
                 
                 HStack {
@@ -65,7 +79,7 @@ struct CountryDetailView: View {
 struct CountryDetail_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CountryDetailView(key:"Japan")
+            CountryDetailView(key:"Japan").environmentObject(ModelData())
         }
     }
 }

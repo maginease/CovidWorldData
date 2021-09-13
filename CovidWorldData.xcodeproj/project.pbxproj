@@ -11,6 +11,7 @@
 		6C95823926D5FFE800228318 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C95823826D5FFE800228318 /* World.swift */; };
 		6C95823B26D6004F00228318 /* TotalCasesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C95823A26D6004F00228318 /* TotalCasesView.swift */; };
 		6C95823D26D6261400228318 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C95823C26D6261400228318 /* CountryDetailView.swift */; };
+		6C9BF40D26EB1E83003EA3F7 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BF40C26EB1E82003EA3F7 /* ModelData.swift */; };
 		6CAEC1C626D36F3B00A7AD50 /* CountryFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEC1C526D36F3B00A7AD50 /* CountryFrameView.swift */; };
 		6CAEC1C826D36F9700A7AD50 /* DataManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEC1C726D36F9700A7AD50 /* DataManage.swift */; };
 		6CAEC1CA26D38B5200A7AD50 /* CountryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEC1C926D38B5200A7AD50 /* CountryRow.swift */; };
@@ -48,6 +49,7 @@
 		6C95823826D5FFE800228318 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		6C95823A26D6004F00228318 /* TotalCasesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCasesView.swift; sourceTree = "<group>"; };
 		6C95823C26D6261400228318 /* CountryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailView.swift; sourceTree = "<group>"; };
+		6C9BF40C26EB1E82003EA3F7 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		6CAEC1C526D36F3B00A7AD50 /* CountryFrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryFrameView.swift; sourceTree = "<group>"; };
 		6CAEC1C726D36F9700A7AD50 /* DataManage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManage.swift; sourceTree = "<group>"; };
 		6CAEC1C926D38B5200A7AD50 /* CountryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryRow.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				6C66932426CFA91300E554BE /* Country.swift */,
 				6C95823826D5FFE800228318 /* World.swift */,
+				6C9BF40C26EB1E82003EA3F7 /* ModelData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				6CAEC1C626D36F3B00A7AD50 /* CountryFrameView.swift in Sources */,
 				6CBE957426CE26F2005B0DA9 /* CovidWorldDataApp.swift in Sources */,
 				6CAEC1CA26D38B5200A7AD50 /* CountryRow.swift in Sources */,
+				6C9BF40D26EB1E83003EA3F7 /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct CovidWorldDataApp: App {
+    
+    @StateObject var modelData = ModelData()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(ModelData())
  
         }
     }

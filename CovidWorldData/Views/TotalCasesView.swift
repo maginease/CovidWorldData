@@ -9,44 +9,32 @@ import SwiftUI
 
 struct TotalCasesView: View {
     
-    @State private var worldData:[World] = []
+    @EnvironmentObject var worldData:ModelData
     
     var body: some View {
-       
-        if worldData.isEmpty {
+        
+        VStack(alignment:.center,spacing:10) {
             
-            Text("Loading...").onAppear {
-                
-                FetchAndDecode(url: "https://api.covid19api.com/summary", type: World.self) { res in
-                    
-                    worldData = [res]
-                }
-            }
-        } else {
-            
-            VStack(alignment:.center,spacing:10) {
-                
-                Text("Total Cases: \(worldData[0].Global.TotalConfirmed)")
-                    .font(.system(.largeTitle))
-                Text("New Cases:+\(worldData[0].Global.NewConfirmed)")
-                    .font(.subheadline)
-                    .foregroundColor(.green)
-                Text("Total Deaths: \(worldData[0].Global.TotalDeaths)")
-                    .font(.title2)
-                Text("New Deaths: +\(worldData[0].Global.NewDeaths)")
-                    .font(.subheadline)
-                    .foregroundColor(.red)
-                
-                
-            }
+            Text("Total Cases: \(worldData.summary.Global.TotalConfirmed)")
+                .font(.system(.largeTitle))
+            Text("New Cases:+\(worldData.summary.Global.NewConfirmed)")
+                .font(.subheadline)
+                .foregroundColor(.green)
+            Text("Total Deaths: \(worldData.summary.Global.TotalDeaths)")
+                .font(.title2)
+            Text("New Deaths: +\(worldData.summary.Global.NewDeaths)")
+                .font(.subheadline)
+                .foregroundColor(.red)
             
         }
+        
+        
         
     }
 }
 
 struct TotalCases_Previews: PreviewProvider {
     static var previews: some View {
-        TotalCasesView()
+        TotalCasesView().environmentObject(ModelData())
     }
 }

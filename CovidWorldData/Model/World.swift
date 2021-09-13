@@ -18,5 +18,14 @@ struct World:Hashable,Codable {
         var TotalDeaths:Int
     }
     
+    struct CountryDataToday:Hashable,Codable {
+        
+        var Country:String
+        var NewConfirmed:Int
+        var TotalConfirmed:Int
+        var NewDeaths:Int
+        var TotalDeaths:Int
+    }
     
+    var Countries:[CountryDataToday]
 }
