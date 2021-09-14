@@ -15,7 +15,7 @@ struct ContentView: View {
             VStack {
                 TotalCasesView()
                 CountryRow()
-            }
+            }.preferredColorScheme(.light)
         }.navigationTitle("Cases")
         
         

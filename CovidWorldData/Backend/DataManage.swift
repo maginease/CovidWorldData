@@ -47,6 +47,8 @@ func barHeight(max:Int,data:Int,frameHeight:Double)->Double {
 
 func NewCasesArray(data:[Country])->[Int] {
     
+    guard data.count > 1 else { return [1] }
+    
     var result = [Int]()
     var targetArray = data
     

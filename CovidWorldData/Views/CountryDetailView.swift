@@ -29,9 +29,23 @@ struct CountryDetailView: View {
             
             Text("Loading...").onAppear {
                 FetchAndDecode(url: returnLink(key: key), type: [Country].self) { res in
-                    countryData = res
+                    
+                    if res.isEmpty {
+                        countryData = [Country(Country: "\(key) not found", Cases: 1, Date: "")]
+                    } else {
+                        
+                        countryData = res
+                    }
                 }
-                country = modelData.summary.Countries.first { $0.Country == key }!
+                
+                if let existingCountry = modelData.summary.Countries.first(where: { $0.Country == key }) {
+                    
+                    country = existingCountry
+                } else {
+                    
+                    country = World.CountryDataToday(Country: key, NewConfirmed: 0, TotalConfirmed: 0, NewDeaths: 0, TotalDeaths: 0)
+                }
+                
                 
             }
         } else {
@@ -79,7 +93,7 @@ struct CountryDetailView: View {
 struct CountryDetail_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CountryDetailView(key:"Japan").environmentObject(ModelData())
+            CountryDetailView(key:"Germany").environmentObject(ModelData())
         }
     }
 }

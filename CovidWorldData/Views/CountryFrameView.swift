@@ -22,8 +22,13 @@ struct CountryFrameView: View {
                 
                 Text("Loading...").onAppear {
                     FetchAndDecode(url: returnLink(key: key), type: [Country].self) { res in
-                        
-                        data = res
+                        if res.isEmpty {
+                            data = [Country(Country: "Data for \(key) not found", Cases: 0, Date: "")]
+                        } else {
+                            
+                            data = res
+                            
+                        }
                     }
                 }
             } else {

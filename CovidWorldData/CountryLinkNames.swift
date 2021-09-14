@@ -7,8 +7,6 @@
 
 import Foundation
 
-let data2 = ["Korea (South)": "korea-south","Japan":"japan","Singapore":"singapore"]
-
 let countryDatas = [
     "Liechtenstein": "liechtenstein",
     "Norfolk Island": "norfolk-island",
@@ -146,7 +144,7 @@ let countryDatas = [
     "Zambia": "zambia",
     "Burundi": "burundi",
     "Sao Tome and Principe": "sao-tome-and-principe",
-    "Réunion": "réunion",
+//    "Réunion": "réunion",
     "Saint Kitts and Nevis": "saint-kitts-and-nevis",
     "Kazakhstan": "kazakhstan",
     "Saint Lucia": "saint-lucia",
@@ -200,7 +198,7 @@ let countryDatas = [
     "Slovakia": "slovakia",
     "Dominican Republic": "dominican-republic",
     "Aruba": "aruba",
-    "Saint-Barthélemy": "saint-barthélemy",
+//    "Saint-Barthélemy": "saint-barthélemy",
     "Papua New Guinea": "papua-new-guinea",
     "Antarctica": "antarctica",
     "Lebanon": "lebanon",
