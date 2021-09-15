@@ -9,10 +9,8 @@ import SwiftUI
 
 struct CountryFrameView: View {
     
-    
     let key:String
     @State private var data:[Country] = []
-    
     
     var body: some View {
         
@@ -21,7 +19,7 @@ struct CountryFrameView: View {
             if data.isEmpty {
                 
                 Text("Loading...").onAppear {
-                    FetchAndDecode(url: returnLink(key: key), type: [Country].self) { res in
+                    FetchAndDecode(url: confirmedCasesLink(key: key), type: [Country].self) { res in
                         if res.isEmpty {
                             data = [Country(Country: "Data for \(key) not found", Cases: 0, Date: "")]
                         } else {

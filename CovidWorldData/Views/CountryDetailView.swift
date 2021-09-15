@@ -9,32 +9,46 @@ import SwiftUI
 
 enum GraphButton {
     
-    case totalCases
-    case newCases
+    case confirmedTotal
+    case confirmedNew
+    case deathTotal
+    case deathNew
+    
 }
 
 
 struct CountryDetailView: View {
     
     let key:String
-    @State var countryData:[Country] = []
+    @State var confirmedData:[Country] = []
+    @State var deathData:[Country] = []
     var height = 200.0
-    @State private var currentButton = GraphButton.totalCases
+    @State private var currentButton = GraphButton.confirmedTotal
     @EnvironmentObject var modelData:ModelData
     @State private var country = World.CountryDataToday(Country: "", NewConfirmed: 0, TotalConfirmed: 0, NewDeaths: 0, TotalDeaths: 0)
     
     var body: some View {
         
-        if countryData.isEmpty {
+        if confirmedData.isEmpty {
             
             Text("Loading...").onAppear {
-                FetchAndDecode(url: returnLink(key: key), type: [Country].self) { res in
+                FetchAndDecode(url: confirmedCasesLink(key: key), type: [Country].self) { res in
                     
                     if res.isEmpty {
-                        countryData = [Country(Country: "\(key) not found", Cases: 1, Date: "")]
+                        confirmedData = [Country(Country: "\(key) not found", Cases: 1, Date: "")]
                     } else {
                         
-                        countryData = res
+                        confirmedData = res
+                    }
+                }
+                
+                FetchAndDecode(url: deathCasesLink(key: key), type: [Country].self) { res in
+                    
+                    if res.isEmpty {
+                        deathData = [Country(Country: "\(key) not found", Cases: 1, Date: "")]
+                    } else {
+                        
+                        deathData = res
                     }
                 }
                 
@@ -52,7 +66,7 @@ struct CountryDetailView: View {
             
             VStack {
                 
-                Text("\(countryData[0].Country)")
+                Text("\(confirmedData[0].Country)")
                     .font(.system(size: 30,design: .serif))
                     .padding()
                     .truncationMode(.head)
@@ -74,15 +88,21 @@ struct CountryDetailView: View {
                     Text("New Deaths:")
                     Text("+\(country.NewDeaths)").foregroundColor(.red)
                 }
-                CountryDetailGraph(data: countryData,height:height,buttonState: currentButton).frame(height:CGFloat(height))
+                CountryDetailGraph(confirmedData: confirmedData,deathData: deathData,height:height,buttonState: currentButton).frame(height:CGFloat(height))
                 
                 HStack {
                     
-                    Button(action: { currentButton = .totalCases },label: { Text("Total Cases") } )
-                        .foregroundColor(currentButton == .totalCases ? .blue:.gray)
+                    Button(action: { currentButton = .confirmedTotal },label: { Text("Total Cases") } )
+                        .foregroundColor(currentButton == .confirmedTotal ? .blue:.gray)
                     
-                    Button(action: { currentButton = .newCases },label: { Text("New Cases") } )
-                        .foregroundColor(currentButton == .newCases ? .blue:.gray)
+                    Button(action: { currentButton = .confirmedNew },label: { Text("New Cases") } )
+                        .foregroundColor(currentButton == .confirmedNew ? .blue:.gray)
+                    
+                    Button(action: { currentButton = .deathTotal },label: { Text("Total Deaths") } )
+                        .foregroundColor(currentButton == .deathTotal ? .blue:.gray)
+                    
+                    Button(action: { currentButton = .deathNew },label: { Text("New Deaths") } )
+                        .foregroundColor(currentButton == .deathNew ? .blue:.gray)
                 }
                 
             }

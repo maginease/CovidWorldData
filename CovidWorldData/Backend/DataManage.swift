@@ -33,11 +33,18 @@ func maxCases(_ data:[Country])->Int {
     return arr.max()!
 }
 
-func returnLink(key:String)->String {
+func confirmedCasesLink(key:String)->String {
     
     guard let linkName = countryDatas[key] else { return "" }
     
     return "https://api.covid19api.com/total/dayone/country/" + linkName + "/status/confirmed"
+}
+
+func deathCasesLink(key:String)->String {
+    
+    guard let linkName = countryDatas[key] else { return "" }
+    
+    return "https://api.covid19api.com/total/dayone/country/" + linkName + "/status/deaths"
 }
 
 func barHeight(max:Int,data:Int,frameHeight:Double)->Double {

@@ -9,20 +9,27 @@ import SwiftUI
 
 struct CountryDetailGraph: View {
     
-    let data:[Country]
+    let confirmedData:[Country]
+    let deathData:[Country]
     var height:Double
     let buttonState:GraphButton
     var numberArray:[Int] {
         
         switch buttonState {
         
-        case .totalCases:
-            return data.map { $0.Cases }
+        case .confirmedTotal:
+            return confirmedData.map { $0.Cases }
             
-        case .newCases:
-            return NewCasesArray(data: data)
+        case .confirmedNew:
+            return NewCasesArray(data: confirmedData)
+            
+        case .deathTotal:
+            return deathData.map { $0.Cases }
+            
+        case .deathNew:
+            return NewCasesArray(data: deathData)
+            
         }
-        
     }
     
     var body: some View {
@@ -32,7 +39,7 @@ struct CountryDetailGraph: View {
                 
                 ForEach(numberArray,id:\.self) { num in
                  
-                    CountryDetailGraphBar(height: CGFloat(barHeight(max: max, data: num, frameHeight: height)), width: UIScreen.main.bounds.width / CGFloat(data.count))
+                    CountryDetailGraphBar(height: CGFloat(barHeight(max: max, data: num, frameHeight: height)), width: UIScreen.main.bounds.width / CGFloat(confirmedData.count))
                
                 }
                 
@@ -43,7 +50,7 @@ struct CountryDetailGraph: View {
 
 struct CountryDetailGraph_Previews: PreviewProvider {
     static var previews: some View {
-        CountryDetailGraph(data:[
+        CountryDetailGraph(confirmedData:[
             Country(Country: "", Cases: 5000, Date: ""),
             Country(Country: "", Cases: 11000, Date: ""),
             Country(Country: "", Cases: 12000, Date: ""),
@@ -58,8 +65,25 @@ struct CountryDetailGraph_Previews: PreviewProvider {
             Country(Country: "", Cases: 50, Date: ""),
             Country(Country: "", Cases: 30, Date: ""),
             Country(Country: "", Cases: 15, Date: "")
-           
-            
-        ],height:200.0,buttonState: .newCases)
+
+
+        ],deathData: [
+            Country(Country: "", Cases: 5000, Date: ""),
+            Country(Country: "", Cases: 11000, Date: ""),
+            Country(Country: "", Cases: 12000, Date: ""),
+            Country(Country: "", Cases: 8000, Date: ""),
+            Country(Country: "", Cases: 5000, Date: ""),
+            Country(Country: "", Cases: 3000, Date: ""),
+            Country(Country: "", Cases: 1200, Date: ""),
+            Country(Country: "", Cases: 800, Date: ""),
+            Country(Country: "", Cases: 500, Date: ""),
+            Country(Country: "", Cases: 150, Date: ""),
+            Country(Country: "", Cases: 100, Date: ""),
+            Country(Country: "", Cases: 50, Date: ""),
+            Country(Country: "", Cases: 30, Date: ""),
+            Country(Country: "", Cases: 15, Date: "")
+
+
+        ],height:200.0,buttonState: .confirmedNew)
     }
 }
